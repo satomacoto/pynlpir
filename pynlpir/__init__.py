@@ -180,7 +180,11 @@ def segment(s, pos_tagging=True, pos_names='parent', pos_english=True):
             if len(token) == 1:
                 token = (token[0], None)
             if pos_names is not None and token[1] is not None:
-                pos_name = _get_pos_name(token[1], pos_names, pos_english)
+                try:
+                    pos_name = _get_pos_name(token[1], pos_names, pos_english)
+                except Exception, e:
+                    logging.error(e)
+                    pos_name = "undefined"
                 token = (token[0], pos_name)
             tokens[i] = token
     logger.debug("Formatted segmented text: %s." % tokens)
