@@ -99,7 +99,11 @@ def _decode(s, encoding=None):
     """Decodes *s*."""
     if encoding is None:
         encoding = ENCODING
-    return s if isinstance(s, unicode) else s.decode(encoding, errors='replace')
+    try:
+        return s if isinstance(s, unicode) else s.decode(encoding)
+    except Exception, e:
+        logging.warn(e)
+        return s if isinstance(s, unicode) else s.decode(encoding, errors='replace')
 
 
 def _encode(s, encoding=None):
