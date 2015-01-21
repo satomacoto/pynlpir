@@ -183,7 +183,7 @@ def segment(s, pos_tagging=True, pos_names='parent', pos_english=True):
                 try:
                     pos_name = _get_pos_name(token[1], pos_names, pos_english)
                 except Exception, e:
-                    logging.error(e)
+                    logging.warn(e)
                     pos_name = "undefined"
                 token = (token[0], pos_name)
             tokens[i] = token
