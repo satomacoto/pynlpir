@@ -101,7 +101,7 @@ def _decode(s, encoding=None):
         encoding = ENCODING
     try:
         return s if isinstance(s, unicode) else s.decode(encoding)
-    except Exception, e:
+    except Exception as e:
         logging.warn(e)
         return s if isinstance(s, unicode) else s.decode(encoding, errors='replace')
 
@@ -186,7 +186,7 @@ def segment(s, pos_tagging=True, pos_names='parent', pos_english=True):
             if pos_names is not None and token[1] is not None:
                 try:
                     pos_name = _get_pos_name(token[1], pos_names, pos_english)
-                except Exception, e:
+                except Exception as e:
                     logging.warn(e)
                     pos_name = "undefined"
                 token = (token[0], pos_name)
